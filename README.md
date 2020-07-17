@@ -35,7 +35,7 @@
 
 ### 效果预览
 
-<div style="background:#e3e3e3; color:#FFF" align=center ><img width="250" height="500" src="./pic/111.jpg"/><img width="250" height="500" src="./pic/222.jpg"/></div>
+<div style="background:#e3e3e3; color:#FFF" align=center ><img width="250" height="500" src="./pic/111.jpg?t=0"/><img width="250" height="500" src="./pic/222.jpg?t=0"/></div>
 
 ### 使用方式
 
