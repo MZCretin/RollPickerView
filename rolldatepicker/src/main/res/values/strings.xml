@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">rolldatepicker</string>
+
+    <string name="date_picker_time_format">yyyy年MM月dd</string>
+    <string name="comfirm_text">确定</string>
+    <string name="date_picker_select_start_time">选择开始时间</string>
+    <string name="date_picker_select_end_time">选择结束时间</string>
+    <string name="simple_monday">一</string>
+    <string name="simple_tuesday">二</string>
+    <string name="simple_wednesday">三</string>
+    <string name="simple_thursday">四</string>
+    <string name="simple_friday">五</string>
+    <string name="simple_saturday">六</string>
+    <string name="simple_sunday">日</string>
+</resources>
