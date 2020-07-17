@@ -149,8 +149,8 @@ public class DatePickerView extends ConstraintLayout {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                DateTime originStartTime = sTime.minusYears(2);
-                DateTime endTime = eTime.plusYears(2);
+                DateTime originStartTime = sTime.minusYears(builder.getPreYear());
+                DateTime endTime = eTime.plusYears(builder.getAfterYear());
 
                 DateTime now = eTime;
                 DateTime beforeOneMonth = sTime;

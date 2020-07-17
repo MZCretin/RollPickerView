@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -42,9 +43,17 @@ public class MainActivity extends AppCompatActivity {
                 .setSelectedItemBg(R.drawable.shape_ff7241_round_100)
                 //时间格式化
                 .setTimeFormater(R.string.date_picker_time_format)
+                //默认选择的开始时间戳
+                .setStartTimestamp(DateTime.now().minusMonths(1).getMillis())
+                //默认选择的结束时间戳
+                .setEndTimestamp(DateTime.now().getMillis())
+                //往前扩展的年份数
+                .setPreYear(2)
+                //往后扩展的年份数
+                .setAfterYear(2)
                 .build();
 
-        findViewById(R.id.tv_click).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.tv_open).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new DatePickerDialog(MainActivity.this, build, new SelectCompleteListener() {
@@ -54,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "取消了", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        Toast.makeText(MainActivity.this, startTime.toString("yyyy-MM-dd") + " - " + endTime.toString("yyyy-MM-dd"), Toast.LENGTH_SHORT).show();
+                        ((TextView) findViewById(R.id.tv_info)).setText("您选择的日期段为：\n"+startTime.toString("yyyy-MM-dd") + " - " + endTime.toString("yyyy-MM-dd"));
                     }
                 }).show();
             }

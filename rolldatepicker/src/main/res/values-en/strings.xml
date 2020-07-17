@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">rolldatepicker</string>
-
     <string name="date_picker_time_format">dd/MM/yyyy</string>
     <string name="comfirm_text">Confirm</string>
     <string name="date_picker_select_start_time">Choose start time</string>

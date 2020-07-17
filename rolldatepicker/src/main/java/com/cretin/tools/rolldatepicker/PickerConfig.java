@@ -87,9 +87,34 @@ public class PickerConfig {
             builder.btnEnableBg = btnEnableBg;
         return this;
     }
+
     public PickerConfig setConfirmBtnText(@StringRes int confirmBtnText) {
         if (builder != null)
             builder.confirmBtnText = confirmBtnText;
+        return this;
+    }
+
+    public PickerConfig setStartTimestamp(long startTimestamp) {
+        if (builder != null)
+            builder.startTimestamp = startTimestamp;
+        return this;
+    }
+
+    public PickerConfig setEndTimestamp(long endTimestamp) {
+        if (builder != null)
+            builder.endTimestamp = endTimestamp;
+        return this;
+    }
+
+    public PickerConfig setPreYear(int preYear) {
+        if (builder != null)
+            builder.preYear = preYear;
+        return this;
+    }
+
+    public PickerConfig setAfterYear(int afterYear) {
+        if (builder != null)
+            builder.afterYear = afterYear;
         return this;
     }
 
@@ -99,13 +124,17 @@ public class PickerConfig {
 
     public static class Builder {
         //选择开始时间提示信息
-        private @StringRes int startTimeTips = R.string.date_picker_select_start_time;
+        private @StringRes
+        int startTimeTips = R.string.date_picker_select_start_time;
         //选择结束时间提示信息
-        private @StringRes int endTimeTips = R.string.date_picker_select_end_time;
+        private @StringRes
+        int endTimeTips = R.string.date_picker_select_end_time;
         //时间格式化
-        private @StringRes int timeFormater = R.string.date_picker_time_format;
+        private @StringRes
+        int timeFormater = R.string.date_picker_time_format;
         //确定按钮的文案
-        private @StringRes int confirmBtnText = R.string.comfirm_text;
+        private @StringRes
+        int confirmBtnText = R.string.comfirm_text;
         //已选择日期的背景
         private @DrawableRes
         int selectedItemBg = R.drawable.shape_ff7241_round_100;
@@ -124,19 +153,46 @@ public class PickerConfig {
         //按钮不可用背景
         private @DrawableRes
         int btnEnableBg = R.drawable.shape_ff7241_round_20_a30;
+        //默认选择的开始时间戳
+        private long startTimestamp = DateTime.now().minusMonths(1).getMillis();
+        //默认选择的结束时间戳
+        private long endTimestamp = DateTime.now().getMillis();
+        //往前扩展的年份数
+        private int preYear = 2;
+        //往后扩展的年份数
+        private int afterYear = 2;
+
+        public long getStartTimestamp() {
+            return startTimestamp;
+        }
+
+        public long getEndTimestamp() {
+            return endTimestamp;
+        }
+
+        public int getPreYear() {
+            return preYear;
+        }
+
+        public int getAfterYear() {
+            return afterYear;
+        }
 
         private Builder() {
         }
 
-        public @StringRes int getStartTimeTips() {
+        public @StringRes
+        int getStartTimeTips() {
             return startTimeTips;
         }
 
-        public @StringRes int getEndTimeTips() {
+        public @StringRes
+        int getEndTimeTips() {
             return endTimeTips;
         }
 
-        public @StringRes int getTimeFormater() {
+        public @StringRes
+        int getTimeFormater() {
             return timeFormater;
         }
 
@@ -144,27 +200,33 @@ public class PickerConfig {
             return confirmBtnText;
         }
 
-        public @DrawableRes int getSelectedItemBg() {
+        public @DrawableRes
+        int getSelectedItemBg() {
             return selectedItemBg;
         }
 
-        public @ColorInt int getCurrentDayTextColor() {
+        public @ColorInt
+        int getCurrentDayTextColor() {
             return currentDayTextColor;
         }
 
-        public @ColorInt int getDateNormalTextColor() {
+        public @ColorInt
+        int getDateNormalTextColor() {
             return dateNormalTextColor;
         }
 
-        public @ColorInt int getDateEnableTextColor() {
+        public @ColorInt
+        int getDateEnableTextColor() {
             return dateEnableTextColor;
         }
 
-        public @DrawableRes int getBtnNormalBg() {
+        public @DrawableRes
+        int getBtnNormalBg() {
             return btnNormalBg;
         }
 
-        public @DrawableRes int getBtnEnableBg() {
+        public @DrawableRes
+        int getBtnEnableBg() {
             return btnEnableBg;
         }
     }

@@ -47,8 +47,9 @@ public class DatePickerDialog extends Dialog {
         super.onCreate(savedInstanceState);
 
         DatePickerView rootView = new DatePickerView(context);
-        rootView.bindTimeRange(builder,new DateTime(2020, 5, 20, 0, 0, 0).getMillis()
-                , new DateTime(2020, 9, 2, 0, 0, 0).getMillis());
+
+        rootView.bindTimeRange(builder, builder.getStartTimestamp()
+                , builder.getEndTimestamp());
         setContentView(rootView); //设置dialog布局
 
         rootView.setSelectCompleteListener(new SelectCompleteListener() {
