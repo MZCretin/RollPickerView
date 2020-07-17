@@ -4,7 +4,9 @@
 
 [![](https://jitpack.io/v/MZCretin/WebViewUtils.svg)](https://jitpack.io/#MZCretin/WebViewUtils)
 
-### 系列
+### 大道至简系列
+[需求解决系列之-【系列工具概览】](https://juejin.im/post/5ed6174f51882542fb06d850)
+此系列是大道至简的起始，将一系列简单恶心的操作封装起来，框架么，可以败絮其中，但一定要金絮其外！
 
 在工作之余，打算将一些常用的逻辑页面，模块，功能点做成library库，这样当有相似需求的时候，可以做到插拔式开发！现在系列中有以下内容
 
@@ -52,30 +54,57 @@
 
   ```java
   dependencies {
-  		//androidx 版本
-        		implementation 'com.github.MZCretin:WebViewUtils:v1.0.4-x'
-            //非androidx 版本
-              implementation 'com.github.MZCretin:WebViewUtils:v1.0.3'
+      implementation 'com.github.MZCretin:RollPickerView:v1.0.0'
   }
   ```
 
 + Step3 Open webview activity wherever you want.
   ```java
-  String url = "http://www.mxnzp.com"
-  WebUtilsConfig config =
-     new WebUtilsConfig()
-             .setTitleBackgroundColor(R.color.colorPrimary)//设置标题栏背景色
-             .setBackText("关闭")//设置返回按钮的文案
-             .setBackBtnRes(R.mipmap.arrow_left_white)//设置返回按钮的图标
-             .setMoreBtnRes(R.mipmap.more_web)//设置更多按钮的图标
-             .setShowBackText(true)//设置是否显示返回按钮的文案
-             .setShowMoreBtn(true)//设置是否显示更多按钮
-             .setShowTitleLine(false)//设置是否显示标题下面的分割线
-             .setShowTitleView(true)//设置是否显示标题栏，网页是全屏的时候可以选择隐藏标题栏
-             .setTitleBackgroundRes(-1)//设置标题栏背景资源
-             .setBackTextColor(-1)//设置返回按钮的文案颜色
-             .setTitleTextColor(-1)//设置标题文字颜色
-             .setStateBarTextColorDark(false)//设置状态栏文字颜色是否是暗色，如果你设置了标题栏背景颜色为白色，这里需要设置true，否则状态栏看不到文案了
-             .setTitleLineColor(R.color.app_title_color);//设置标题栏下面的分割线的颜色
-  OpenWebActivity.openWebView(MainActivity.this, url, config);
+  
+        final PickerConfig.Builder build = PickerConfig.create()
+                //按钮不可用背景
+                .setBtnEnableBg(R.drawable.shape_ff7241_round_20_a30)
+                //按钮正常背景
+                .setBtnNormalBg(R.drawable.shape_ff7241_round_20)
+                //设置按钮的文字
+                .setConfirmBtnText(R.string.comfirm_text)
+                //今日的日期颜色
+                .setCurrentDayTextColor(Color.parseColor("#FF7241"))
+                //date不可用颜色
+                .setDateEnableTextColor(Color.parseColor("#cccccc"))
+                //date正常颜色
+                .setDateNormalTextColor(Color.parseColor("#333333"))
+                //选择结束时间提示信息
+                .setEndTimeTips(R.string.date_picker_select_end_time)
+                //选择开始时间提示信息
+                .setStartTimeTips(R.string.date_picker_select_start_time)
+                //已选择日期的背景
+                .setSelectedItemBg(R.drawable.shape_ff7241_round_100)
+                //时间格式化
+                .setTimeFormater(R.string.date_picker_time_format)
+                //默认选择的开始时间戳
+                .setStartTimestamp(DateTime.now().minusMonths(1).getMillis())
+                //默认选择的结束时间戳
+                .setEndTimestamp(DateTime.now().getMillis())
+                //往前扩展的年份数
+                .setPreYear(2)
+                //往后扩展的年份数
+                .setAfterYear(2)
+                .build();
+
+        findViewById(R.id.tv_open).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(MainActivity.this, build, new SelectCompleteListener() {
+                    @Override
+                    public void onSelectComplete(boolean isCancel, DateTime startTime, DateTime endTime) {
+                        if (isCancel) {
+                            Toast.makeText(MainActivity.this, "取消了", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        ((TextView) findViewById(R.id.tv_info)).setText("您选择的日期段为：\n"+startTime.toString("yyyy-MM-dd") + " - " + endTime.toString("yyyy-MM-dd"));
+                    }
+                }).show();
+            }
+        });
   ```
