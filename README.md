@@ -58,7 +58,7 @@
   }
   ```
 
-+ Step3 Open webview activity wherever you want.
++ Step3 Open datepicker wherever you want.
   ```java
   
         final PickerConfig.Builder build = PickerConfig.create()
